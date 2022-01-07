@@ -8,16 +8,26 @@
 </head>
 <body>
     <% published.forEach((post) => { %>
-        <h3>
-            <a href=<%= post.url %>>
-                <%= post.title %>
-            </a>
-        </h3>
-        <p>
-            <%= post.publish_date %>
-        </p>
+        <div class="post">
+            <h3>
+                <a href=<%= post.url %>>
+                    <%= post.title %>
+                </a>
+            </h3>
+            <div>
+                <p>
+                    <%= post.desc %>
+                </p>
+            </div>
+            <p>
+                <%= post.publish_date %>
+            </p>
+            <div>
+                <p>
+                    <%= post.publication %>
+                </p>
+            </div>
+        </div>
     <%}) %>
-    <p><%= heading %></p>
-    <p><%= para.second_post %></p>
 </body>
 </html>

@@ -60,27 +60,53 @@ function get_all_blog_posts_by_scraping() {
       ttt_publish_dates.push($(element).text());
     })
 
-    // $('#main article header h2 a').each((_idx, element) => {
-    //   axios.get(`${$(element).attr('href')}`).then((res) => {
-    //     const $ = cheerio.load(res.data);
-    //     ttt_desc.push($('.entry-content > p:first').text());
-    //   }).catch((err) => {
-    //     console.log(err);
-    //   })
-    // })
-    // setTimeout(() => {
-    //   console.log(ttt_desc, ttt_urls, "line 71");
-    // },5000)
+    $('#main article header h2 a').each((_idx, element) => {
+      axios.get(`${$(element).attr('href')}`).then((res) => {
+        const $ = cheerio.load(res.data);
+        ttt_desc.push($('.entry-content > p:first').text());
+      }).catch((err) => {
+        console.log(err);
+      })
+    })
 
-  }).then(async () => {
+  }).then(() => {
 
-    for (let i = 0; i < ttt_headings.length; i++) {
-      all_blog_posts.push({ url: ttt_urls[i], desc: ttt_desc[i], published: ttt_publish_dates[i] })
-    }
+    setTimeout(async () => {
 
+      for (let i = 0; i < ttt_headings.length; i++) {
+        all_blog_posts.push({ url: ttt_urls[i], desc: ttt_desc[i], published: ttt_publish_dates[i] })
+      }
+      const res_2 = await notion.databases.query({ database_id: `${databaseId}` });
 
-    const result = await getBlogPosts(all_blog_posts)
-    // console.log(result, 82)
+      res_2.results.forEach(async (page, index) => {
+        console.log(page.properties.URL)
+        if (page.properties.URL !== undefined) {
+          for (let k = 0; k < all_blog_posts.length; k++) {
+            if (page.properties.URL.url == all_blog_posts[k].url) {
+              try {
+                const res_3 = await notion.pages.update({
+                  page_id: page.id,
+                  properties: {
+                    "Excerpt": {
+                      "rich_text": [
+                        {
+                          "type": "text",
+                          "text": {
+                            "content": `${all_blog_posts[k].desc}`
+                          }
+                        }
+                      ]
+                    }
+                  }
+                })
+              } catch (err) {
+                console.log(err.message)
+              }
+            }
+          }
+        }
+      })
+    }, 10000)
 
   }).catch((err) => {
     console.log(err);
@@ -88,117 +114,69 @@ function get_all_blog_posts_by_scraping() {
 
   return all_blog_posts;
 }
-// setTimeout(() => {console.log(get_all_blog_posts_by_scraping()), 98}, 8000);
-// async function get() {
-//   const posts = await get_all_blog_posts_by_scraping();
-//   // posts.forEach((post) => {
-//   //   console.log(post);
-//   // })
-//   console.log(posts, "2");
-// }
-// setTimeout(() => {
-//   get();
-// }, 8000)
-// get_all_blog_posts_by_scraping();
 
-var data = { "properties": { "Excerpt": { "rich_text": { "type": "string", "value": "hey" } } } };
-
-var config = {
-  path: `databases/${databaseId}`,
-  // body: data
-};
-// console.log(config.url)
-// request(config, function (error, response) {
-//   if (error) throw new Error(error);
-//   console.log(response.body);
-// });
 async function update() {
-  // const res = await notion.databases.retrieve({ database_id: `${databaseId}` });
   const res_2 = await notion.databases.query({ database_id: `${databaseId}` });
 
-
-  // console.log(res.properties.Excerpt.rich_text);
-  // console.log(res_2.results);
   res_2.results.forEach(async (page, index) => {
-    console.log(page.id)
-    let property_id = page.properties.Excerpt.id;
+    console.log(page.properties.Name.title[0].plain_text)
     if (index === 0) {
       try {
         const res_3 = await notion.pages.update({
           page_id: 'ed81579c-887a-4955-9934-fb2b3275f31b',
           properties: {
-            [property_id]: {
-              type: "rich_text",
-              rich_text: {
-                text: {
-                  "content": "hey"
+            "Excerpt": {
+              "rich_text": [
+                {
+                  "type": "text",
+                  "text": {
+                    "content": "hello"
+                  }
                 }
-              }
+              ]
             }
           }
         })
-
-        // const res_4 = await notion.pages.retrieve({page_id: page.id})
-        // console.log(res_4)
       } catch (err) {
         console.log(err.message)
       }
     }
-    // console.log(res_3.results)
   })
 }
-update();
+// update();
 
-// axios.create(config)
-//   .then(function (response) {
-//     console.log(JSON.stringify(response.data));
-//   })
-//   .catch(function (error) {
-//     console.log(error);
-//   });
 
-// async function print(){
-//   const print_posts = await getBlogPosts();
-//   console.log(print_posts)
-// }
-// print();
 
-const getBlogPosts = async (scraped_posts) => {
+const getBlogPosts = async () => {
   const payload = {
     path: `databases/${databaseId}/query`,
     method: 'POST'
   }
 
   const data = await notion.request(payload);
-  // console.log(data.results)
-  // const scraped_posts = await get_all_blog_posts_by_scraping();
 
   const blogPosts = data.results.map((post) => {
 
     if (post.properties['Published On'] !== undefined) {
-      for (let j = 0; j < scraped_posts.length; j++) {
-        if (scraped_posts[j].url === post.properties.URL.url) {
-          // console.log(post.properties);
-          return {
-            id: post.id,
-            title: post.properties.Name.title[0].text.content,
-            publish_date: post.properties['Published On'].date.start,
-            publication: post.properties['Published in'].select.name,
-            status: post.properties.Status.select.name,
-            url: post.properties.URL.url,
-            desc: scraped_posts[j].desc
-          }
-        }
+      
+      return {
+        id: post.id,
+        title: post.properties.Name.title[0].text.content,
+        publish_date: post.properties['Published On'].date.start,
+        publication: post.properties['Published in'].select.name,
+        status: post.properties.Status.select.name,
+        url: post.properties.URL.url,
+        desc: post.properties.Excerpt.rich_text[0].plain_text
       }
+
+
     } else {
       return null;
     }
   })
-
   return blogPosts;
 }
 
-// getBlogPosts();
 module.exports = async function published_posts() {
 
   const blogPosts = await getBlogPosts();
@@ -208,6 +186,5 @@ module.exports = async function published_posts() {
       return post;
     }
   })
-
   return published_posts;
 }
