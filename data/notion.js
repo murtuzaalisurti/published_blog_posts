@@ -25,9 +25,7 @@ const getBlogPosts = async () => {
 
       const description = `${post.properties.Excerpt.rich_text[0].plain_text}`.slice(" ", 160)+"...";
       let publication = post.properties['Published in'].select.name;
-      if(post.properties['Published in'].select.name == "Draft.dev (Backhub)"){
-        publication = 'Draft';
-      } else if(post.properties['Published in'].select.name == "DEV Community (dev.to)"){
+      if(post.properties['Published in'].select.name == "DEV Community (dev.to)"){
         publication = 'dev.to';
       }
 
