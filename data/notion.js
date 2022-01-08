@@ -30,7 +30,6 @@ const getBlogPosts = async () => {
       } else if(post.properties['Published in'].select.name == "DEV Community (dev.to)"){
         publication = 'dev.to';
       }
-      console.log(publication);
 
       return {
         id: post.id,

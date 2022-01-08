@@ -4,13 +4,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Murtuzaali Surti">
+    <meta name="description" content="A compilation of blog posts written by Murtuzaali Surti">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=DM+Sans:ital,wght@0,400;0,500;1,400;1,500&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,900;1,300;1,400;1,500;1,600;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <title>Blog Posts of Murtuza</title>
+    <title>Blog Posts</title>
 </head>
 <body>
+    <div class="header">
+        <div class="title">
+            Murtuza's Posts
+        </div>
+        <div class="link-icon">
+            <a href="https://murtuzaalisurti.github.io" target="_blank" rel="noreferrer" class="portfolio-link">
+                <i class="fas fa-external-link-alt"></i>
+            </a>
+        </div>
+    </div>
     <div class="posts">
         <% published.forEach((post) => { %>
             <div class="post">
@@ -24,11 +37,11 @@
                         <%= post.desc %>
                     </p>
                 </div>
-                <p class="post-publish-date">
-                    <%= post.publish_date %>
-                </p>
-                <div class="post-publication">
-                    <p>
+                <div class="publish-meta-data">
+                    <p class="post-publish-date">
+                        <%= post.publish_date %>
+                    </p>
+                    <p class="post-publication">
                         <%= post.publication %>
                     </p>
                 </div>

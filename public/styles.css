@@ -38,6 +38,29 @@ a {
   text-decoration: none;
 }
 
+a:hover {
+  text-decoration: underline;
+}
+
+.header {
+  margin-top: 2rem;
+  color: #D7F9FF;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.5rem;
+  width: 80%;
+  padding: 0 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.title {
+  display: inline-block;
+}
+
 .posts {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -49,14 +72,17 @@ a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin: 2rem 0;
+  margin: 1.5rem 0;
   width: 80%;
-  max-width: 30rem;
+  max-width: 37rem;
 }
 
 .post {
   margin: 2rem 1rem 0 1rem;
   padding-bottom: 1rem;
+}
+
+.posts .post:not(:last-child) {
   border-bottom: 1px solid #D7F9FF;
 }
 
@@ -72,19 +98,44 @@ a {
   font-style: italic;
   color: #6d8084;
   font-size: 1rem;
+  margin-top: 0.3rem;
+}
+
+.publish-meta-data {
+  margin-top: 0.5rem;
 }
 
 .post-publish-date, .post-publication {
   font-family: 'Poppins', sans-serif;
-  color: #6d8084;
+  color: #7e9295;
   font-style: italic;
   font-size: 0.8rem;
+  display: inline-block;
+  margin-right: 0.3rem;
 }
 
 .post-publish-date {
-  margin-top: 0.5rem;
+  color: #b1ced3;
 }
 
 .post-publication {
   font-size: 0.7rem;
+}
+
+@media screen and (max-width: 35em) {
+  .header {
+    font-size: 1.2rem;
+  }
+  .post-title {
+    font-size: 1.25rem;
+  }
+  .post-desc {
+    font-size: 0.8rem;
+  }
+  .post-publish-date {
+    font-size: 0.65rem;
+  }
+  .post-publication {
+    font-size: 0.55rem;
+  }
 }
