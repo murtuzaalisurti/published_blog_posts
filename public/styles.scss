@@ -88,6 +88,19 @@ a:hover{
     font-size: 0.7rem;
 }
 
+footer{
+    margin-bottom: 2rem;
+}
+.text1{
+    font-size: 0.9rem;
+    color: #a1bbc0;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+}
+.text1 a{
+    color: #a1bbc0;
+}
+
 @media screen and (max-width: 35em) {
     .header{
         font-size: 1.2rem;
