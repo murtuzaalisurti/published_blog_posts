@@ -3,8 +3,6 @@ const published_posts = require('./data/notion');
 const express = require('express');
 const app = express();
 const dotenv = require('dotenv');
-const axios = require('axios');
-const cheerio = require('cheerio');
 dotenv.config();
 
 app.use(express.static('public'));

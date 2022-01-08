@@ -1,0 +1,65 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.palettes{
+    background-color: #280004;
+    background-color: #4C230A;
+    background-color: #424B54;
+    background-color: #432818;
+    color: #CCC9A1;
+    color: #F0FFCE;
+    color: #EBCFB2;
+    color: #BB9457;
+    color: #FFE6A7;
+    color: #AFCBFF;
+    color: #F9FBF2;
+}
+body{
+    background-color: #0E1C36;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+a{
+    color: #D7F9FF;
+    text-decoration: none;
+}
+.posts{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem 0;
+    width: 80%;
+    max-width: 30rem;
+}
+.post{
+    margin: 2rem 1rem 0 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #D7F9FF;
+}
+.post-title{
+    font-family: 'Poppins', sans-serif;
+    font-weight: normal;
+    color: #D7F9FF;
+    font-size: 1.6rem;
+}
+.post-desc{
+    font-family: 'DM Sans', sans-serif;
+    font-style: italic;
+    color: #6d8084;
+    font-size: 1rem;
+}
+.post-publish-date, .post-publication{
+    font-family: 'Poppins', sans-serif;
+    color: #6d8084;
+    font-style: italic;
+    font-size: 0.8rem;
+}
+.post-publish-date{
+    margin-top: 0.5rem;
+}
+.post-publication{
+    font-size: 0.7rem;
+}

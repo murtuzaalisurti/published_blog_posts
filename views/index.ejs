@@ -4,30 +4,36 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=DM+Sans:ital,wght@0,400;0,500;1,400;1,500&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,900;1,300;1,400;1,500;1,600;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
     <title>Blog Posts of Murtuza</title>
 </head>
 <body>
-    <% published.forEach((post) => { %>
-        <div class="post">
-            <h3>
-                <a href=<%= post.url %>>
-                    <%= post.title %>
-                </a>
-            </h3>
-            <div>
-                <p>
-                    <%= post.desc %>
+    <div class="posts">
+        <% published.forEach((post) => { %>
+            <div class="post">
+                <h3 class="post-title">
+                    <a class="post-url" href=<%= post.url %>>
+                        <%= post.title %>
+                    </a>
+                </h3>
+                <div class="post-desc">
+                    <p>
+                        <%= post.desc %>
+                    </p>
+                </div>
+                <p class="post-publish-date">
+                    <%= post.publish_date %>
                 </p>
+                <div class="post-publication">
+                    <p>
+                        <%= post.publication %>
+                    </p>
+                </div>
             </div>
-            <p>
-                <%= post.publish_date %>
-            </p>
-            <div>
-                <p>
-                    <%= post.publication %>
-                </p>
-            </div>
-        </div>
-    <%}) %>
+        <%}) %>
+    </div>
 </body>
 </html>
