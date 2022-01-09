@@ -20,7 +20,7 @@
 }
 
 body {
-  background-color: #0E1C36;
+  background-color: #0e1c36;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -38,8 +38,28 @@ a {
   text-decoration: none;
 }
 
-a:hover {
-  text-decoration: underline;
+a.post-url, .text1 a {
+  --transition-point: 0%;
+  color: #D7F9FF;
+  text-decoration: none;
+  background: -webkit-gradient(linear, left bottom, left top, from(#d7f9ff75), to(#0e1c36));
+  background: linear-gradient(to top, #d7f9ff75 var(--transition-point), #0e1c36 var(--transition-point));
+  transition: --transition-point 0.3s ease-in-out;
+  position: relative;
+}
+
+@supports (background: paint(houdini)) {
+  @property --transition-point {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 0%;
+  }
+}
+
+@supports (background: paint(houdini)) {
+  a.post-url:hover, .text1 a:hover {
+    --transition-point: 15%;
+  }
 }
 
 .header {
