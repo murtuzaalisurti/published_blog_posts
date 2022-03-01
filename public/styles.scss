@@ -52,7 +52,6 @@ a.post-url, .text1 a{
     font-family: 'Poppins', sans-serif;
     font-size: 1.5rem;
     width: 80%;
-    padding: 0 1rem;
     display: flex;
     justify-content: space-between;
 }
@@ -62,14 +61,15 @@ a.post-url, .text1 a{
 .posts{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin: 1.5rem 0;
+    align-items: flex-start;
+    margin: 4rem 0;
     width: 80%;
     max-width: 37rem;
 }
 .post{
-    margin: 2rem 1rem 0 1rem;
+    margin-bottom: 3rem;
     padding-bottom: 1rem;
+    width: 100%;
 }
 .posts .post:not(:last-child){
     border-bottom: 1px solid #D7F9FF;
@@ -80,18 +80,6 @@ a.post-url, .text1 a{
     color: #D7F9FF;
     font-size: 1.6rem;
 }
-// .post-url{
-//     text-decoration: none;
-//     // background-image: linear-gradient(transparent calc(100% - 1px),#d7f9ff9a calc(100% - 1px),#d7f9ff9a calc(100% - 2px),transparent 1px);
-//     background-image: none;
-//     background-size: 0 100%;
-//     background-repeat: no-repeat;
-//     transition: all .7s;
-// }
-// .post-url:hover{
-//     background-size: 100% 100%;
-//     background-image: linear-gradient(transparent calc(100% - 4px),#d7f9ff9a calc(100% - 4px),#d7f9ff9a calc(100% - 2px),transparent 2px);
-// }
 .post-desc{
     font-family: 'DM Sans', sans-serif;
     font-style: italic;
